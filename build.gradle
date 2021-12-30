@@ -1,0 +1,36 @@
+plugins {
+//    id 'java' apply(false)
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    group 'net.minestom.extension'
+    version '1.0'
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spongepowered.org/maven' }
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        compileOnly 'com.github.Minestom:Minestom:83ab75d1bf'
+    }
+}
+
+task buildAndCollectAll(type: Copy) {
+    for (subproject in subprojects) {
+        dependsOn(subproject.getTasks().getByName("build"))
+
+        from(new File(subproject.buildDir, "libs")) {
+            include '*.jar'
+        }
+
+        into 'build/libs'
+    }
+}
+
+task removeBuildDir(type: Delete) {
+    delete 'build'
+}

@@ -1,0 +1,4 @@
+rootProject.name = 'minestom_extension_tests'
+
+include('empty', 'basic_dependency')
+

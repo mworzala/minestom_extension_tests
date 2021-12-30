@@ -1,0 +1,5 @@
+{
+  "name": "Empty",
+  "version": "1.0.0",
+  "entrypoint": "net.minestom.extension.EmptyExtension"
+}
